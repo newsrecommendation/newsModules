@@ -1,0 +1,6 @@
+{"trainData": "./data/ccks2019/event_type_entity_extract_train.csv",
+  "vocabDict": "./data/chinese_L-12_H-768_A-12/vocab.txt",
+  "bertConfig": "./data/chinese_L-12_H-768_A-12/bert_config.json",
+  "bertCheckPoint": "./data/chinese_L-12_H-768_A-12/bert_model.ckpt",
+  "Relation": "./data/datasets/all_50_schemas_me.json"
+}
