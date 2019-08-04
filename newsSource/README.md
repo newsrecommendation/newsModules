@@ -3,23 +3,23 @@
 ### 目录结构
 - root
    |
-   |--Things_Define_MainNER_Triple(这个是JGW的代码目录，但请下载该目录下同名文件）       
-   |             |-chinese_L-12_H-768_A-12
-   |             |-其他文件
-   |
-   |--财经
-   |--user_news_api
+   |--Things_Define_MainNER_Triple(这个是JGW的代码目录，但请下载该目录下同名文件）           
+   |             |-chinese_L-12_H-768_A-12   
+   |             |-其他文件   
+   |   
+   |--财经   
+   |--user_news_api   
 
 ### 新闻结构
-THU库内新闻结构：
--财经
-  |-644599.txt
-  |-...txt
-  |-800000.txt
- 每个txt文档内格式：
- title【单独一行】
- body【多行，可能含有空行】
-（xxx）【撰稿人名称或来源】
+THU库内新闻结构：   
+-财经   
+  |-644599.txt   
+  |-...txt   
+  |-800000.txt   
+ 每个txt文档内格式：   
+ title【单独一行】   
+ body【多行，可能含有空行】   
+（xxx）【撰稿人名称或来源】   
 
 #### user_news_api_only.py
 本文档中init()类为文档初始类，请在使用user_info_in类之前使用。  
