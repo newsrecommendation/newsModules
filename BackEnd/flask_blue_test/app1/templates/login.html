@@ -1,0 +1,93 @@
+{%extends 'test0.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block css %}
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        form{
+            width: 500px;
+            border: 1px solid #47b4ec;
+            border-radius: 7px;
+            text-align: center;
+            margin: 50px auto;
+            padding: 10px 0 25px;
+        }
+        div{
+            margin: 20px 0;
+        }
+        input{
+            width: 250px;
+            height: 30px;
+            border: 1px solid gray;
+            border-radius: 7px;
+            outline: none;
+            padding: 0 10px;
+            margin-left: 15px;
+        }
+        input[type=submit]{
+            width: 150px;
+            cursor: pointer;
+        }
+        input[name='yz']{
+            width: 100px;
+        }
+        #yz {
+            width: 150px;
+            height: 30px;
+            vertical-align: middle;
+        }
+        input[type=radio]{
+            width: auto;
+            height: auto;
+        }
+        input[type='radio']:checked+span{
+            color: #2b72ff;
+        }
+    </style>
+    {%endblock%}
+</head>
+<body>
+{% block h1 %}
+<div>
+    {%include 'test.html'%}
+</div>
+<form action="">
+    <img src="{{url_for('app1.static',filename='img/1.jpg')}}" alt="">
+    <div>
+        <span style="letter-spacing: 1em">账</span>号：<input type="text" name="username">
+    </div>
+    <div>
+        <span style="letter-spacing: 1em">密</span>码：<input type="password" name="password">
+    </div>
+    <a href="{{url_for('app1.t')}}">点击测试</a>
+    <input type="submit" value="登录">
+    <h2>extend方法</h2>
+
+</form>
+{%endblock%}
+</body>
+{% block js %}
+<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+<script type="text/javascript">
+    $('input[type=submit]').on('click',function (event) {
+        event.preventDefault();
+        let paras = $('form').serialize();
+        $.ajax({
+            type:'post',
+            url:'{{url_login}}',
+            data:paras,
+            success:function (res) {
+                res = JSON.parse(res);
+                alert(res.infor)
+            }
+        })
+    })
+</script>
+{%endblock%}
+</html>

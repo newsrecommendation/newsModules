@@ -1,0 +1,6 @@
+① python manage.py db init  （只运行一次，为生成migrations文件夹，以便之后数据改变，版本迁移）
+② python manage.py db migrate  （完成迁移）
+③ python manage.py db upgrade  （更新数据库表格）
+
+首先在本地建立一个新的数据库。在代码中注意修改数据库名字。
+当自己运行时，将migrations文件删除，这个文件夹在执行上述命令行后会生成一个新的文件夹。

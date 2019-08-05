@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+    <h2>测试：修改设置渲染网页函数路由名称，不会影响访问网页（endpoint用法）</h2>
+    <br>
+    <h3 style="color: orangered">endpoint用法：当修改某个函数的访问路由名称时，不会影响网页之间的跳转，实现动态获取路由名称。方便提高效率和维护</h3>
+    <a href="{{url_for('app1.login')}}">点击测试</a>
+    <h1>extend方法测试</h1>
+    {% block h1 %}
+    {% endblock %}
+</body>
+{% block js %}
+{% endblock %}
+</html>
