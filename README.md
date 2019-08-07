@@ -1,6 +1,6 @@
 # newsModules
 
-20190807 接新闻训练数据交接文档:
+20190807 接新闻训练数据交接文档（F、Y）:  
 1、发给推荐模型的新闻数据要求train的字段及格式为：[user_id, news_id, news_title , is_clicked, permid: entity]，  
 train中总共包含2w条左右新闻，400个左右用户的点击历史,每个用户点击过2w条中的20-100篇新闻；  
 news_title需要能概括新闻内容；  
