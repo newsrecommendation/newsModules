@@ -1,3 +1,6 @@
+# word embedding
+# 实现raw_test.txt->test.txt,raw_train.txt->train.txt
+
 import re
 import os
 import gensim
@@ -19,6 +22,7 @@ corpus = []
 
 def count_word_and_entity_freq(files):
     """
+    此处的enitity指的是train,test中显式地给出的新闻标题的entity
     Count the frequency of words and entities in news titles in the training and test files
     :param files: [training_file, test_file]
     :return: None
@@ -61,7 +65,8 @@ def construct_word2id_and_entity2id():
             cnt += 1
     print('- word size: %d' % len(word2index))
 
-    writer = open('../kg/entity2index.txt', 'w', encoding='utf-8')
+    writer = open(prefix + 'minidata_entity2index.txt', 'w', encoding='utf-8')
+    # writer = open('../kg/entity2index.txt', 'w', encoding='utf-8')
     cnt = 1
     for entity, freq in entity2freq.items():
         if freq >= ENTITY_FREQ_THRESHOLD:
@@ -153,15 +158,19 @@ def get_word2vec_model():
 
 
 if __name__ == '__main__':
+    prefix = '/Users/icarus/PycharmProjects/newsModules/Recommendation/1DKN/kg_minidata/'
     print('counting frequencies of words and entities ...')
-    count_word_and_entity_freq(['raw_train.txt', 'raw_test.txt'])
+    # count_word_and_entity_freq(['raw_train.txt', 'raw_test.txt'])
+    count_word_and_entity_freq([prefix + 'minidata_raw_train.txt'])
+
 
     print('constructing word2id map and entity to id map ...')
     construct_word2id_and_entity2id()
 
     print('transforming training and test dataset ...')
-    transform('raw_train.txt', 'train.txt')
-    transform('raw_test.txt', 'test.txt')
+    transform(prefix + 'minidata_raw_train.txt',prefix + 'minidata_train.txt')
+    # transform('raw_train.txt', 'train.txt')
+    # transform('raw_test.txt', 'test.txt')
 
     print('getting word embeddings ...')
     embeddings = np.zeros([len(word2index) + 1, WORD_EMBEDDING_DIM])
@@ -170,4 +179,5 @@ if __name__ == '__main__':
         embedding = model[word] if word in model.wv.vocab else np.zeros(WORD_EMBEDDING_DIM)
         embeddings[index + 1] = embedding
     print('- writing word embeddings ...')
-    np.save(('word_embeddings_' + str(WORD_EMBEDDING_DIM)), embeddings)
+    np.save((prefix + 'minidata_word_embeddings_' + str(WORD_EMBEDDING_DIM)), embeddings)
+    # np.save(('word_embeddings_' + str(WORD_EMBEDDING_DIM)), embeddings)

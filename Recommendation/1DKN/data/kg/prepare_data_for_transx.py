@@ -1,3 +1,11 @@
+# 参数说明
+# 1、triple2id.txt
+# 存放的是head_index, tail_index, relation_index
+# head_index，tail_index分别表示该实体（head/tail）在各三元组实体中的位置
+# relation_list表示关系在三元组关系中出现的位置
+# 2、entit2id.txt存的是实体（head,tail）在所有三元组(kg.txt中的)中出现的位置（entity在Kg中的编号,entity在kg里所有实体的位置）
+# 3、relation2id.txt存的是关系在所有三元组中存在的位置
+# 对于关系或实体，只要值相同就是同一关系/实体
 def prepare_data(kg_in, triple_out, relation_out, entity_out):
     relation2index = {}
     entity2index = {}
@@ -65,4 +73,10 @@ def prepare_data(kg_in, triple_out, relation_out, entity_out):
 
 
 if __name__ == '__main__':
-    prepare_data(kg_in='kg.txt', triple_out='triple2id.txt', relation_out='relation2id.txt', entity_out='entity2id.txt')
+    prefix = '/Users/icarus/PycharmProjects/newsModules/Recommendation/1DKN/kg_minidata/'
+    kg_in = prefix + 'classtriples.txt'
+    triple_out = prefix + 'minidata_triple2id.txt'
+    relation_out = prefix + 'minidata_relation2id.txt'
+    entity_out = prefix + 'minidata_entity2id.txt'
+    prepare_data(kg_in=kg_in, triple_out=triple_out, relation_out=relation_out, entity_out=entity_out)
+    # prepare_data(kg_in='kg.txt', triple_out='triple2id.txt', relation_out='relation2id.txt', entity_out='entity2id.txt')

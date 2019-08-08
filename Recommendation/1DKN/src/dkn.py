@@ -25,16 +25,21 @@ class DKN(object):
 
     def _build_model(self, args):
         with tf.name_scope('embedding'):
-            word_embs = np.load('../data/news/word_embeddings_' + str(args.word_dim) + '.npy')
-            entity_embs = np.load('../data/kg/entity_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
+            # 说明代码当前目录是project所在目录
+            # word_embeddings由news_preprocess.py得到，
+            # entity_embeddings由kg_preprocess.py得到
+            word_embs = np.load('../kg_minidata/minidata_word_embeddings_' + str(args.word_dim) + '.npy')
+            entity_embs = np.load('../kg_minidata/minidata_entity_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
+            # word_embs = np.load('../data/news/word_embeddings_' + str(args.word_dim) + '.npy')
+            # entity_embs = np.load('../data/kg/entity_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
             self.word_embeddings = tf.Variable(word_embs, dtype=np.float32, name='word')
             self.entity_embeddings = tf.Variable(entity_embs, dtype=np.float32, name='entity')
             self.params.append(self.word_embeddings)
             self.params.append(self.entity_embeddings)
 
             if args.use_context:
-                context_embs = np.load(
-                    '../data/kg/context_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
+                context_embs = np.load('../kg_minidata/minidata_context_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
+                # context_embs = np.load('../data/kg/context_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
                 self.context_embeddings = tf.Variable(context_embs, dtype=np.float32, name='context')
                 self.params.append(self.context_embeddings)
 
@@ -49,13 +54,12 @@ class DKN(object):
 
         user_embeddings, news_embeddings = self._attention(args)
 
-        print("user_em:",user_embeddings)
-        print("news_em:",news_embeddings)
-        print("*:",user_embeddings * news_embeddings)
+        # todo figure out
         self.scores_unnormalized = tf.reduce_sum(user_embeddings * news_embeddings, axis=1)
         self.scores = tf.sigmoid(self.scores_unnormalized)
-        print("scores_unnormalized:",self.scores_unnormalized)
 
+        # tensorboard
+        # tf.summary.scalar('scores',self.scores)
 
     def _attention(self, args):
         # (batch_size * max_click_history, max_title_length)
@@ -123,6 +127,9 @@ class DKN(object):
             # (batch_size, max_title_length - filter_size + 1, 1, n_filters_for_each_size) for news
             conv = tf.nn.conv2d(concat_input, w, strides=[1, 1, 1, 1], padding='VALID', name='conv')
             relu = tf.nn.relu(tf.nn.bias_add(conv, b), name='relu')
+            # tensorboard
+            tf.summary.histogram('kcnn_conv:',conv)
+            tf.summary.histogram('kcnn_relu:',relu)
 
             # (batch_size * max_click_history, 1, 1, n_filters_for_each_size) for users
             # (batch_size, 1, 1, n_filters_for_each_size) for news
@@ -151,13 +158,15 @@ class DKN(object):
                 self.l2_loss = tf.add(self.l2_loss, tf.losses.get_regularization_loss())
             self.loss = self.base_loss + self.l2_loss
             self.optimizer = tf.train.AdamOptimizer(args.lr).minimize(self.loss)
+        # tensorboard
+        tf.summary.scalar('loss', self.loss)
+        tf.summary.scalar('base_loss',self.base_loss)
+
 
     def train(self, sess, feed_dict):
         return sess.run(self.optimizer, feed_dict)
 
-    def eval(self, sess, feed_dict):
-        labels, scores = sess.run([self.labels, self.scores], feed_dict)
+    def eval(self, sess, merged_summary_op,feed_dict):
+        labels, scores,summary = sess.run([self.labels, self.scores,merged_summary_op], feed_dict)
         auc = roc_auc_score(y_true=labels, y_score=scores)
-        print("score:",scores)
-        print("shape of score:",scores.shape)
-        return auc,scores
+        return auc,scores,summary

@@ -20,9 +20,10 @@ int dimension = 50;
 float transeAlpha = 0.001;
 float margin = 1;
 
-string inPath = "../../";
-string outPath = "../../";
-
+//string inPath = "../../";
+//string outPath = "../../";
+string inPath = "/Users/icarus/PycharmProjects/newsModules/Recommendation/1DKN/kg_minidata/";
+string outPath = inPath;
 
 int *lefHead, *rigHead;
 int *lefTail, *rigTail;
@@ -103,7 +104,8 @@ void init() {
 	FILE *fin;
 	int tmp;
 
-	fin = fopen((inPath + "relation2id.txt").c_str(), "r");
+//	fin = fopen((inPath + "relation2id.txt").c_str(), "r");
+	fin = fopen((inPath + "minidata_relation2id.txt").c_str(), "r");
 	tmp = fscanf(fin, "%d", &relationTotal);
 	fclose(fin);
 
@@ -113,7 +115,8 @@ void init() {
 			relationVec[i * dimension + ii] = randn(0, 1.0 / dimension, -6 / sqrt(dimension), 6 / sqrt(dimension));
 	}
 
-	fin = fopen((inPath + "entity2id.txt").c_str(), "r");
+//	fin = fopen((inPath + "entity2id.txt").c_str(), "r");
+	fin = fopen((inPath + "minidata_entity2id.txt").c_str(), "r");
 	tmp = fscanf(fin, "%d", &entityTotal);
 	fclose(fin);
 
@@ -124,7 +127,9 @@ void init() {
 		norm(entityVec+i*dimension);
 	}
 
-	fin = fopen((inPath + "triple2id.txt").c_str(), "r");
+//	fin = fopen((inPath + "triple2id.txt").c_str(), "r");
+	fin = fopen((inPath + "minidata_triple2id.txt").c_str(), "r");
+
 	tmp = fscanf(fin, "%d", &tripleTotal);
 	trainHead = (Triple *)calloc(tripleTotal, sizeof(Triple));
 	trainTail = (Triple *)calloc(tripleTotal, sizeof(Triple));
@@ -339,8 +344,10 @@ void out_transe() {
 		ss << dimension;
 		string dim = ss.str();
 	
-		FILE* f2 = fopen((outPath + "TransE_relation2vec_" + dim + ".vec").c_str(), "w");
-		FILE* f3 = fopen((outPath + "TransE_entity2vec_" + dim + ".vec").c_str(), "w");
+//		FILE* f2 = fopen((outPath + "TransE_relation2vec_" + dim + ".vec").c_str(), "w");
+//		FILE* f3 = fopen((outPath + "TransE_entity2vec_" + dim + ".vec").c_str(), "w");
+		FILE* f2 = fopen((outPath + "minidata_TransE_relation2vec_" + dim + ".vec").c_str(), "w");
+		FILE* f3 = fopen((outPath + "minidata_TransE_entity2vec_" + dim + ".vec").c_str(), "w");
 		for (int i=0; i < relationTotal; i++) {
 			int last = dimension * i;
 			for (int ii = 0; ii < dimension; ii++)
