@@ -26,9 +26,6 @@ with open('minidata_raw_train.txt', 'rt', encoding='utf-8') as newsfile:
     #
     # for line in lines:
     #     print(line.split(" "))
-
-
-
 # with open('minidata_raw_train.txt', 'rt', encoding='utf-8') as newsfile:
 #     reader_news = csv.DictReader(newsfile)
 #

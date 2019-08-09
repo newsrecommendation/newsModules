@@ -140,7 +140,6 @@ stus = Student.query.get(1) 得到是一个对象，不是列表， ‘1’默�
     map_msg = {123:456}
     return json.dumps(map_msg)
 
-
 @appnews.route('/appnews/views/get_news/<int:user_id>/', methods=['POST', 'GET'])
 def get_news(user_id):
     map_msg = {}
