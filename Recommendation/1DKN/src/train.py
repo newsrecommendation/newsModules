@@ -18,7 +18,7 @@ def get_feed_dict(model, data, start, end):
 
 def train(args, train_data, test_data):
     model = DKN(args)
-    train_len = 985
+    train_len = 2680
     aver_score = np.zeros(train_len)
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())

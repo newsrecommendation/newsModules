@@ -93,110 +93,110 @@ def get_news_csv(user_id):
     msg = {}
     msg_list = []
     news_list = []
-    if user_id == 1:
-        with open('news_jgw/user1.txt', 'r', encoding='utf8') as f:
-            cont = True
-            li = []
-            news_list = []
-            msg = {}
-            while cont:
-                cont = f.readline()
-                li.append(cont)
-                if cont == '\n':
-                    # print(li)
-                    # print(type(li))
-                    li = str(li)
-
-                    # print(li)
-                    title = re.findall(r"\"title\" : \"(.*?)\"\,\\n\'\,", li)
-                    # print('title: {}'.format(title))
-
-                    time = re.findall(r"\"time\" : \"(.*?)\"", li)
-                    # print('time: {}'.format(time))
-
-                    content = re.findall(r"\"content\" : \"(.*?)\"\,\\n\'\,", li)
-                    # print('content: {}'.format(content))
-
-                    entity = re.findall(r"\"keywords\" : (.*?) ]\,\\n\'\, \'", li)
-                    # print('entity: {}'.format(entity))
-
-
-                    temp = {'title': title, 'time': time, 'entity': entity,'content': content}
-                    news_list.append(temp)
-
-                    li = []
-            msg = {user_id: news_list}
-            return json.dumps(msg, ensure_ascii=False)
-
-    if user_id == 2:
-        with open('news_jgw/user2.txt', 'r', encoding='utf8') as f:
-            cont = True
-            li = []
-            news_list = []
-            msg = {}
-            while cont:
-                cont = f.readline()
-                li.append(cont)
-                if cont == '\n':
-                    # print(li)
-                    # print(type(li))
-                    li = str(li)
-
-                    # print(li)
-                    title = re.findall(r"\"title\" : \"(.*?)\"\,\\n\'\,", li)
-                    # print('title: {}'.format(title))
-
-                    time = re.findall(r"\"time\" : \"(.*?)\"", li)
-                    # print('time: {}'.format(time))
-
-                    content = re.findall(r"\"content\" : \"(.*?)\"\,\\n\'\,", li)
-                    # print('content: {}'.format(content))
-
-                    entity = re.findall(r"\"keywords\" : (.*?) ]\,\\n\'\, \'", li)
-                    # print('entity: {}'.format(entity))
-
-
-                    temp = {'title': title, 'time': time, 'entity': entity,'content': content}
-                    news_list.append(temp)
-
-                    li = []
-            msg = {user_id: news_list}
-            return json.dumps(msg, ensure_ascii=False)
-
-    if user_id == 3:
-        with open('news_jgw/user3.txt', 'r', encoding='utf8') as f:
-            cont = True
-            li = []
-            news_list = []
-            msg = {}
-            while cont:
-                cont = f.readline()
-                li.append(cont)
-                if cont == '\n':
-                    # print(li)
-                    # print(type(li))
-                    li = str(li)
-
-                    # print(li)
-                    title = re.findall(r"\"title\" : \"(.*?)\"\,\\n\'\,", li)
-                    # print('title: {}'.format(title))
-
-                    time = re.findall(r"\"time\" : \"(.*?)\"", li)
-                    # print('time: {}'.format(time))
-
-                    content = re.findall(r"\"content\" : \"(.*?)\"\,\\n\'\,", li)
-                    # print('content: {}'.format(content))
-
-                    entity = re.findall(r"\"keywords\" : (.*?) ]\,\\n\'\, \'", li)
-                    # print('entity: {}'.format(entity))
-
-
-                    temp = {'title': title, 'time': time, 'entity': entity,'content': content}
-                    news_list.append(temp)
-
-                    li = []
-            msg = {user_id: news_list}
-            return json.dumps(msg, ensure_ascii=False)
+    # if user_id == 1:
+    #     with open('news_jgw/user1.txt', 'r', encoding='utf8') as f:
+    #         cont = True
+    #         li = []
+    #         news_list = []
+    #         msg = {}
+    #         while cont:
+    #             cont = f.readline()
+    #             li.append(cont)
+    #             if cont == '\n':
+    #                 # print(li)
+    #                 # print(type(li))
+    #                 li = str(li)
+    #
+    #                 # print(li)
+    #                 title = re.findall(r"\"title\" : \"(.*?)\"\,\\n\'\,", li)
+    #                 # print('title: {}'.format(title))
+    #
+    #                 time = re.findall(r"\"time\" : \"(.*?)\"", li)
+    #                 # print('time: {}'.format(time))
+    #
+    #                 content = re.findall(r"\"content\" : \"(.*?)\"\,\\n\'\,", li)
+    #                 # print('content: {}'.format(content))
+    #
+    #                 entity = re.findall(r"\"keywords\" : (.*?) ]\,\\n\'\, \'", li)
+    #                 # print('entity: {}'.format(entity))
+    #
+    #
+    #                 temp = {'title': title, 'time': time, 'entity': entity,'content': content}
+    #                 news_list.append(temp)
+    #
+    #                 li = []
+    #         msg = {user_id: news_list}
+    #         return json.dumps(msg, ensure_ascii=False)
+    #
+    # if user_id == 2:
+    #     with open('news_jgw/user2.txt', 'r', encoding='utf8') as f:
+    #         cont = True
+    #         li = []
+    #         news_list = []
+    #         msg = {}
+    #         while cont:
+    #             cont = f.readline()
+    #             li.append(cont)
+    #             if cont == '\n':
+    #                 # print(li)
+    #                 # print(type(li))
+    #                 li = str(li)
+    #
+    #                 # print(li)
+    #                 title = re.findall(r"\"title\" : \"(.*?)\"\,\\n\'\,", li)
+    #                 # print('title: {}'.format(title))
+    #
+    #                 time = re.findall(r"\"time\" : \"(.*?)\"", li)
+    #                 # print('time: {}'.format(time))
+    #
+    #                 content = re.findall(r"\"content\" : \"(.*?)\"\,\\n\'\,", li)
+    #                 # print('content: {}'.format(content))
+    #
+    #                 entity = re.findall(r"\"keywords\" : (.*?) ]\,\\n\'\, \'", li)
+    #                 # print('entity: {}'.format(entity))
+    #
+    #
+    #                 temp = {'title': title, 'time': time, 'entity': entity,'content': content}
+    #                 news_list.append(temp)
+    #
+    #                 li = []
+    #         msg = {user_id: news_list}
+    #         return json.dumps(msg, ensure_ascii=False)
+    #
+    # if user_id == 3:
+    #     with open('news_jgw/user3.txt', 'r', encoding='utf8') as f:
+    #         cont = True
+    #         li = []
+    #         news_list = []
+    #         msg = {}
+    #         while cont:
+    #             cont = f.readline()
+    #             li.append(cont)
+    #             if cont == '\n':
+    #                 # print(li)
+    #                 # print(type(li))
+    #                 li = str(li)
+    #
+    #                 # print(li)
+    #                 title = re.findall(r"\"title\" : \"(.*?)\"\,\\n\'\,", li)
+    #                 # print('title: {}'.format(title))
+    #
+    #                 time = re.findall(r"\"time\" : \"(.*?)\"", li)
+    #                 # print('time: {}'.format(time))
+    #
+    #                 content = re.findall(r"\"content\" : \"(.*?)\"\,\\n\'\,", li)
+    #                 # print('content: {}'.format(content))
+    #
+    #                 entity = re.findall(r"\"keywords\" : (.*?) ]\,\\n\'\, \'", li)
+    #                 # print('entity: {}'.format(entity))
+    #
+    #
+    #                 temp = {'title': title, 'time': time, 'entity': entity,'content': content}
+    #                 news_list.append(temp)
+    #
+    #                 li = []
+    #         msg = {user_id: news_list}
+    #         return json.dumps(msg, ensure_ascii=False)
 
     with open('recom.csv','rt',encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)

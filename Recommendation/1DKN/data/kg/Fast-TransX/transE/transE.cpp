@@ -22,7 +22,7 @@ float margin = 1;
 
 //string inPath = "../../";
 //string outPath = "../../";
-string inPath = "/Users/icarus/PycharmProjects/newsModules/Recommendation/1DKN/kg_minidata/";
+string inPath = "/Users/jgw/Documents/Deecamp/newsModules/Recommendation/1DKN/Jgw_data";
 string outPath = inPath;
 
 int *lefHead, *rigHead;
@@ -105,7 +105,7 @@ void init() {
 	int tmp;
 
 //	fin = fopen((inPath + "relation2id.txt").c_str(), "r");
-	fin = fopen((inPath + "minidata_relation2id.txt").c_str(), "r");
+	fin = fopen((inPath + "jgw_relation2id.txt").c_str(), "r");
 	tmp = fscanf(fin, "%d", &relationTotal);
 	fclose(fin);
 
@@ -116,7 +116,7 @@ void init() {
 	}
 
 //	fin = fopen((inPath + "entity2id.txt").c_str(), "r");
-	fin = fopen((inPath + "minidata_entity2id.txt").c_str(), "r");
+	fin = fopen((inPath + "jgw_entity2id.txt").c_str(), "r");
 	tmp = fscanf(fin, "%d", &entityTotal);
 	fclose(fin);
 
@@ -128,7 +128,7 @@ void init() {
 	}
 
 //	fin = fopen((inPath + "triple2id.txt").c_str(), "r");
-	fin = fopen((inPath + "minidata_triple2id.txt").c_str(), "r");
+	fin = fopen((inPath + "jgw_triple2id.txt").c_str(), "r");
 
 	tmp = fscanf(fin, "%d", &tripleTotal);
 	trainHead = (Triple *)calloc(tripleTotal, sizeof(Triple));
@@ -346,8 +346,8 @@ void out_transe() {
 	
 //		FILE* f2 = fopen((outPath + "TransE_relation2vec_" + dim + ".vec").c_str(), "w");
 //		FILE* f3 = fopen((outPath + "TransE_entity2vec_" + dim + ".vec").c_str(), "w");
-		FILE* f2 = fopen((outPath + "minidata_TransE_relation2vec_" + dim + ".vec").c_str(), "w");
-		FILE* f3 = fopen((outPath + "minidata_TransE_entity2vec_" + dim + ".vec").c_str(), "w");
+		FILE* f2 = fopen((outPath + "jgw_TransE_relation2vec_" + dim + ".vec").c_str(), "w");
+		FILE* f3 = fopen((outPath + "jgw_TransE_entity2vec_" + dim + ".vec").c_str(), "w");
 		for (int i=0; i < relationTotal; i++) {
 			int last = dimension * i;
 			for (int ii = 0; ii < dimension; ii++)

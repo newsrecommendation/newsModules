@@ -40,8 +40,8 @@ def aggregate(train_df, max_click_history):
 
 def transform(df, uid2words, uid2entities):
     # 兼容没有看过任何新闻的用户
-    df['clicked_words'] = df['user_id'].map(lambda x: uid2words[x] if x in uid2words else uid2words[84])
-    df['clicked_entities'] = df['user_id'].map(lambda x: uid2entities[x] if x in uid2entities else uid2entities[84])
+    df['clicked_words'] = df['user_id'].map(lambda x: uid2words[x] if x in uid2words else uid2words[1])
+    df['clicked_entities'] = df['user_id'].map(lambda x: uid2entities[x] if x in uid2entities else uid2entities[1])
     # df['clicked_words'] = df['user_id'].map(lambda x: uid2words[x] )
     # df['clicked_entities'] = df['user_id'].map(lambda x: uid2entities[x])
     data = Data(size=df.shape[0],

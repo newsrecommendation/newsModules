@@ -73,10 +73,10 @@ def prepare_data(kg_in, triple_out, relation_out, entity_out):
 
 
 if __name__ == '__main__':
-    prefix = '/Users/icarus/PycharmProjects/newsModules/Recommendation/1DKN/kg_minidata/'
-    kg_in = prefix + 'classtriples.txt'
-    triple_out = prefix + 'minidata_triple2id.txt'
-    relation_out = prefix + 'minidata_relation2id.txt'
-    entity_out = prefix + 'minidata_entity2id.txt'
+    prefix = './'
+    kg_in = prefix + 'jgw_classtriples.txt'
+    triple_out = prefix + 'jgw_triple2id.txt'
+    relation_out = prefix + 'jgw_relation2id.txt'
+    entity_out = prefix + 'jgw_entity2id.txt'
     prepare_data(kg_in=kg_in, triple_out=triple_out, relation_out=relation_out, entity_out=entity_out)
     # prepare_data(kg_in='kg.txt', triple_out='triple2id.txt', relation_out='relation2id.txt', entity_out='entity2id.txt')

@@ -28,8 +28,8 @@ class DKN(object):
             # 说明代码当前目录是project所在目录
             # word_embeddings由news_preprocess.py得到，
             # entity_embeddings由kg_preprocess.py得到
-            word_embs = np.load('../kg_minidata/minidata_word_embeddings_' + str(args.word_dim) + '.npy')
-            entity_embs = np.load('../kg_minidata/minidata_entity_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
+            word_embs = np.load('./jgw_word_embeddings_' + str(args.word_dim) + '.npy')
+            entity_embs = np.load('./jgw_entity_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
             # word_embs = np.load('../data/news/word_embeddings_' + str(args.word_dim) + '.npy')
             # entity_embs = np.load('../data/kg/entity_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
             self.word_embeddings = tf.Variable(word_embs, dtype=np.float32, name='word')
@@ -38,7 +38,7 @@ class DKN(object):
             self.params.append(self.entity_embeddings)
 
             if args.use_context:
-                context_embs = np.load('../kg_minidata/minidata_context_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
+                context_embs = np.load('./jgw_context_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
                 # context_embs = np.load('../data/kg/context_embeddings_' + args.KGE + '_' + str(args.entity_dim) + '.npy')
                 self.context_embeddings = tf.Variable(context_embs, dtype=np.float32, name='context')
                 self.params.append(self.context_embeddings)

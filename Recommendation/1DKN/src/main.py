@@ -3,7 +3,7 @@ from data_loader import load_data
 from train import train
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--train_file', type=str, default='../kg_minidata/minidata_train.txt', help='path to the training file')
+parser.add_argument('--train_file', type=str, default='./jgw_train.txt', help='path to the training file')
 # parser.add_argument('--train_file', type=str, default='../data/news/train.txt', help='path to the training file')
 parser.add_argument('--test_file', type=str, default='../data/news/test.txt', help='path to the test file')
 parser.add_argument('--transform', type=bool, default=True, help='whether to transform entity embeddings')
