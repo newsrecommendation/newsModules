@@ -18,6 +18,8 @@ from .models import *
 # 导入json，来完成前后端的数据交互
 import json
 import re
+import pandas as pd
+import numpy as py
 
 
 
@@ -222,6 +224,31 @@ def get_news_csv(user_id):
                         num += 1
                     msg = {user_id:news_list}
                 return json.dumps(msg,ensure_ascii=False)
+
+
+@appnews.route('/get_news_jgw/<int:user_id>/')
+def get_news_jgw(user_id):
+    news_id_list = []
+    news_list = []
+    with open('news_jgw/recom_v1.csv','rt' ,encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row['user_id'] == str(user_id):
+                news_id_list.append(row['news_id'])
+        if news_id_list == []:
+            msg = {'Error':'no news/fresh user'}
+            return json.dumps(msg, ensure_ascii=False)
+        else:
+            data = pd.read_csv('news_jgw/clickid_to_news', header=None).values.tolist()
+            for i in news_id_list:
+                i = int(i)
+                temp = {'news_title': data[i][0], 'news_body': data[i][3]}
+                news_list.append(temp)
+            msg = {user_id: news_list}
+            # print(msg)
+            return json.dumps(msg, ensure_ascii=False)
+
+
 
 """
 stus = Student.query.filter(Student.s_age==18) 得到的结果是 sqlalchemy.BaseQuery’
