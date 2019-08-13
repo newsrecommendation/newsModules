@@ -256,7 +256,7 @@ def news_jgw(user_id):
     data = pd.read_csv('news_final/news_'+str(user_id)+'.csv',header=None).values.tolist()
     # 这里取前30条新闻
     for i in range(30):
-        temp = {'title':data[i][1], 'news_body':data[i][2]}
+        temp = {'title':data[i][1], 'content':data[i][2]}
         news_list.append(temp)
     msg = {user_id: news_list}
     # print(msg)
