@@ -3,7 +3,7 @@ from data_loader import load_data
 from train import train
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--train_file', type=str, default='../kg_minidata/minidata_train.txt', help='path to the training file')
+parser.add_argument('--train_file', type=str, default='./jgw_train.txt', help='path to the training file')
 # parser.add_argument('--train_file', type=str, default='../data/news/train.txt', help='path to the training file')
 parser.add_argument('--test_file', type=str, default='../data/news/test.txt', help='path to the test file')
 parser.add_argument('--transform', type=bool, default=True, help='whether to transform entity embeddings')
@@ -16,7 +16,7 @@ parser.add_argument('--l2_weight', type=float, default=0.01, help='weight of l2 
 parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
 parser.add_argument('--batch_size', type=int, default=128, help='number of samples in one batch')
 # epochs
-parser.add_argument('--n_epochs', type=int, default=10, help='number of training epochs')
+parser.add_argument('--n_epochs', type=int, default=3, help='number of training epochs')
 parser.add_argument('--KGE', type=str, default='TransE',
                     help='knowledge graph embedding method, please ensure that the specified input file exists')
 parser.add_argument('--entity_dim', type=int, default=50,

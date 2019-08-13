@@ -18,7 +18,7 @@ def get_feed_dict(model, data, start, end):
 
 def train(args, train_data, test_data):
     model = DKN(args)
-    train_len = 985
+    train_len = 2680
     aver_score = np.zeros(train_len)
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
@@ -37,7 +37,12 @@ def train(args, train_data, test_data):
 
             # evaluation
             train_auc,score,summary = model.eval(sess, merged_summary_op, get_feed_dict(model, train_data, 0, train_data.size))
+
+            ###!这里还是必须换回去，每个用户点击的情况
             # test_auc,score,summary = model.eval(sess, merged_summary_op,get_feed_dict(model, test_data, 0, test_data.size))
+
+
+
             # tensorboard
             tf.summary.scalar('score',score)
             summary_writer.add_summary(summary, args.n_epochs * train_data.size + args.batch_size)
