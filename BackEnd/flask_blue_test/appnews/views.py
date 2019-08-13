@@ -95,8 +95,9 @@ def get_news_csv(user_id):
     msg = {}
     msg_list = []
     news_list = []
+
     # if user_id == 1:
-    #     with open('news_jgw/user1.txt', 'r', encoding='utf8') as f:
+    #    with open('news_jgw/user.txt', 'r', encoding='utf8') as f:
     #         cont = True
     #         li = []
     #         news_list = []
@@ -247,6 +248,19 @@ def get_news_jgw(user_id):
             msg = {user_id: news_list}
             # print(msg)
             return json.dumps(msg, ensure_ascii=False)
+
+@appnews.route('/news_jgw/<int:user_id>/')
+def news_jgw(user_id):
+    news_list = []
+    # with open('news_final/news_'+str(user_id)+'.csv', 'r', encoding='utf8') as f:
+    data = pd.read_csv('news_final/news_'+str(user_id)+'.csv',header=None).values.tolist()
+    # 这里取前30条新闻
+    for i in range(30):
+        temp = {'title':data[i][1], 'news_body':data[i][2]}
+        news_list.append(temp)
+    msg = {user_id: news_list}
+    # print(msg)
+    return json.dumps(msg, ensure_ascii=False)
 
 
 
