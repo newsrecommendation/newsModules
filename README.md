@@ -5,6 +5,8 @@
 NewsSource、Recommendation、FrontEnd、BackEnd、DataBase
 
 #### 部署流程：
+0. 若仅需要展示使用已完成的展示数据，直接进入BackEnd/flask_blue_test中运行flask run —host=0.0.0.0，
+进入FrontEnd/vuecli中运行npm run serve并访问0.0.0.0:8080即可
 
 1. 将DataBase文件夹中csv导入数据库（含四个表）
 
