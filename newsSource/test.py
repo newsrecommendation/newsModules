@@ -16,7 +16,7 @@ import random
 temp=np.full((100,100),0.)
 for x1 in range(100):
     for x2 in range(100):
-        temp[x1][x2]+=random.random()*0.0000001
+        temp[x1][x2]+= random.random()*0.0000001
 for x1 in range(100):
     temp[x1][random.randint(0,8)]=1+(random.random()-0.5)*0.000001
 # temp[99][99]=1
